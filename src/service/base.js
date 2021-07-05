@@ -1,15 +1,17 @@
 import axios from 'axios'
 
-const baseURL = '/'
 const api_head = 'https://yunicu-api.yunicu.com'
-const yun_api_head = 'https://yunicu-api.yunicu.com'
+const baseURL = api_head
 axios.defaults.baseURL = baseURL
 
 export function get(url,params){
 //封装get方法
-  return axios.get(api_head+url,{
-    params
-  }).then((res)=>{
+  return axios.get(url,{
+    params,
+    headers: {
+      'x-token':'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwibG9naW5fbmFtZSI6ImZyZWQiLCJ1c2VyX25hbWUiOiLlqITmlozmlowiLCJyb2xlX2lkIjoxLCJyb2xlX25hbWUiOiLotoXnuqfnrqHnkIblkZgifQ.V9RnbWTUqkB1kL6ytTxRRrOWjlpdH7qnT7BIfcFLutI',
+    }
+  },).then((res)=>{
     const serverData = res.data
       return serverData
   }).catch((e)=>{
@@ -18,7 +20,9 @@ export function get(url,params){
 }
 
 export function post(url,data){
-  return axios.post(api_head+url,data)
+  return axios.post(url,data,{headers:{
+      'x-token':'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwibG9naW5fbmFtZSI6ImZyZWQiLCJ1c2VyX25hbWUiOiLlqITmlozmlowiLCJyb2xlX2lkIjoxLCJyb2xlX25hbWUiOiLotoXnuqfnrqHnkIblkZgifQ.V9RnbWTUqkB1kL6ytTxRRrOWjlpdH7qnT7BIfcFLutI',
+    }})
     .then((res)=>{
       const serverData = res.data
       return serverData
@@ -28,7 +32,7 @@ export function post(url,data){
 }
 
 export function put(url,data){
-  return axios.put(api_head+url,data)
+  return axios.put(url,data)
     .then((res)=>{
       const serverData = res.data
       return serverData

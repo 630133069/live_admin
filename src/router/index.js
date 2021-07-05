@@ -10,7 +10,12 @@ const routes = [
   {
     path:'/manage',
     name: 'manage',
-    component: () => import('@/views/manage')
+    component: () => import('@/views/live_manage')
+  },
+  {
+    path: '/challenge',
+    name:'challenge',
+    component: () => import('@/views/image_challenge_manage')
   }
 ]
 
